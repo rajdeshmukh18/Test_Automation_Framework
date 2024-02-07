@@ -44,7 +44,7 @@ class Login_Test:
         unm.send_keys("A")
         lgnbut.click()
         Login_Test.run_test("Required msg displayed for password only", True, driver.find_element(By.XPATH,
-                                                                                             "//div[@class='orangehrm-login-form']//div[2]//div[1]//span[1]").text
+                                                                                             "//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']").text
                             == "Required")
 
         driver.refresh()

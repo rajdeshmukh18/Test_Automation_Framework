@@ -2,6 +2,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+from datetime import datetime
 
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -19,11 +20,15 @@ textbox = WebDriverWait(driver, 10).until(
 time.sleep(3)
 
 #Common function for all
-def run_test(test_name, actual, expected):
+def run_test(test_name, actual, expected,target=""):
     try:
         assert actual == expected
         print(f"Test passed: {test_name}")
     except AssertionError as e:
+        current_datetime = datetime.now()
+        fname = current_datetime.strftime("%Y_%m_%d_%H_%M_%S")
+        driver.get_screenshot_as_file(
+            f"C:\\python-selenium\\pythonseleniumProject1\\idealtestcases\\{test_name}_{fname}_aftererror.png")
         print(f"Test failed: {test_name}. {e}" + f"Actual: {actual}  " + f"Expected:{expected} ")
 
 #Test Case 1

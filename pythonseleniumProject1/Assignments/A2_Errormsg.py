@@ -36,16 +36,36 @@ class Login_Test:
         passw = driver.find_element(By.NAME, "password")
         lgnbut = driver.find_element(By.TAG_NAME, "button")
         if Login_Test.run_test("Username Textbox Enable", True, unm.is_enabled()):
-            unm.send_keys("Admin")
+            unm.send_keys("Admi")
         if Login_Test.run_test("Password Textbox Enable", True, passw.is_enabled()):
             passw.send_keys("admin12")
         if Login_Test.run_test("Login Button Enable", True, lgnbut.is_enabled()):
             lgnbut.click()
-            Login_Test.run_test("Error Message Displayed for invalid password", True, driver.find_element(By.XPATH,
-                                                                                                          "//p[@class='oxd-text "
-                                                                                                          "oxd-text--p "
-                                                                                                          "oxd-alert-content-text']").text
+            Login_Test.run_test("Error Message Displayed for invalid password and username", True,
+                                driver.find_element(By.XPATH,
+                                                    "//p[@class='oxd-text "
+                                                    "oxd-text--p "
+                                                    "oxd-alert-content-text']").text
                                 == "Invalid credentials")
+        driver.find_element(By.NAME, "username").send_keys("")
+        driver.find_element(By.NAME, "username").send_keys("Admin")
+        Login_Test.run_test("Error Message Displayed for invalid password", True,
+                            driver.find_element(By.XPATH,
+                                                "//p[@class='oxd-text "
+                                                "oxd-text--p "
+                                                "oxd-alert-content-text']").text
+                            == "Invalid credentials")
+        driver.find_element(By.NAME, "username").send_keys("")
+        driver.find_element(By.NAME, "username").send_keys("A")
+        driver.find_element(By.NAME, "password").click()
+        driver.find_element(By.NAME, "password").send_keys("admin123")
+        Login_Test.run_test("Error Message Displayed for invalid password", True,
+                            driver.find_element(By.XPATH,
+                                                "//p[@class='oxd-text "
+                                                "oxd-text--p "
+                                                "oxd-alert-content-text']").text
+                            == "Invalid credentials")
+        driver.close()
 
 
 login = Login_Test()

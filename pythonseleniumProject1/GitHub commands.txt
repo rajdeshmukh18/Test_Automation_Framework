@@ -10,3 +10,5 @@ git add *
 git commit -m "first commit"
 git push -u origin main
 git clone pathfromgithub
+git pull
+git remote set-url origin https://github.com/rajdeshmukh18/react_codes.git

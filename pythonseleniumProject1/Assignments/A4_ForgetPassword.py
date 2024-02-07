@@ -37,7 +37,7 @@ class Login_Test:
         Login_Test.run_test("Login Button Enable", True, lgnbut.is_enabled())
         driver.find_element(By.XPATH,"//p[@class='oxd-text oxd-text--p orangehrm-login-forgot-header']").click()
         driver.find_element(By.XPATH,"//input[@placeholder='Username']").send_keys("rdeshmukh907569@gmail.com")
-        driver.find_element(By.XPATH,"//button[normalize-space()='Reset Password']").click()
+        driver.find_element(By.XPATH,"//button[@type='submit']").click()
         Login_Test.run_test("Reset Password Link Sent", True, driver.find_element(By.XPATH,"//h6[@class='oxd-text oxd-text--h6 orangehrm-forgot-password-title']").text=="Reset Password link sent successfully")
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
         unm2= driver.find_element(By.NAME, "username")
