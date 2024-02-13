@@ -1,4 +1,5 @@
 import logging
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
@@ -32,9 +33,11 @@ class Login_Test:
         passw = driver.find_element(By.NAME, "password")
         lgnbut = driver.find_element(By.TAG_NAME, "button")
         if Login_Test.run_test("Username Textbox Enabled", True, unm.is_enabled()):
-            unm.send_keys("Admin")
+            unm.get_attribute("Admin")
+            time.sleep(3)
         if Login_Test.run_test("Password Textbox Enabled", True, passw.is_enabled()):
             passw.send_keys("admin123")
+            time.sleep(3)
         if Login_Test.run_test("Login Button Enabled", True, lgnbut.is_enabled()):
             lgnbut.click()
             Login_Test.run_test("User redirected to Home Page", True,
